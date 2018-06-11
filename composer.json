@@ -1,0 +1,10 @@
+{
+    "name": "6xiaowu9/laravel-sensitiveword-filter",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "6xiaowu9"
+        }
+    ],
+    "require": {}
+}
