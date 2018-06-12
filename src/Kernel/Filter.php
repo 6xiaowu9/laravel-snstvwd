@@ -1,16 +1,11 @@
 <?php
 namespace Snstvwd\Filter\Kernel;
 
-use Illuminate\Session\SessionManager;
 use Illuminate\Config\Repository;
+use Snstvwd\Filter\Facades\TextProcessor;
 
-    // use TextProcessor;
 class Filter
 {
-    /**
-     * @var SessionManager
-     */
-    protected $session;
 
     /**
      * @var Repository
@@ -23,27 +18,30 @@ class Filter
      * @param SessionManager $session
      * @param Repository $config
      */
-    public function __construct(SessionManager $session, Repository $config)
+    public function __construct(Repository $config)
     {
-        $this->session = $session;
-        $this->config = $config;
-        $this->snstvwd = TextProcessor::fomateWords( $this->config['filter']['words'] );
+        $this->config = $config['filter'];
+        $this->snstvwd = TextProcessor::fomateWords( $this->config['words'] );
     }
 
-    // public function addWords ( $words ) {
-    //     if ( !is_array( $words ) ) 
-    //         $words = [$words];
-    //     $this->snstvwd = $this->fomateWords( $words, $this->snstvwd );
-    // }
+    /**
+     * 动态添加词库
+     * @Author xiaowu
+     * @param  [string | array] $words [description]
+     */
+    public function addWords ( $words ) {
+        if ( !is_array( $words ) ) 
+            $words = [$words];
+        $this->snstvwd = TextProcessor::fomateWords( $words, $this->snstvwd );
+    }
 
-    public function filter ( string $text ) {
-        return $this->snstvwd;
-        // $data = [
-        //     'count' => 0,
-        //     'sensitive' => []
-        // ];
-        // $textArr = preg_split('/(?<!^)(?!$)/u', $text);
-        // $this->verification( $textArr, $this->snstvwd, $data);
-        // return $data;
+    /**
+     * 字符串过滤
+     * @Author xiaowu
+     * @param  string $text 字符串文本
+     * @return [FilterWord]       词库过滤器实体
+     */
+    public function filter ( string $origin ) {
+        return TextProcessor::verification( $origin, $this->snstvwd );
     }
 }

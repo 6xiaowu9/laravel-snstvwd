@@ -1,5 +1,5 @@
 <?php 
-namespace Snstvwd\Filter\Kernel;
+namespace Snstvwd\Filter\Entity;
 
  /**
   * 节点模型类
@@ -29,14 +29,6 @@ namespace Snstvwd\Filter\Kernel;
  		return $this;
  	}
 
- 	/**
- 	 * 获取下一个节点
- 	 * @Author xiaowu
- 	 * @return [Node]       [description]
- 	 */
- 	public function getNext () {
- 		return $this->next;
- 	}
 
  	/**
  	 * 设置结束 Tag
@@ -48,13 +40,5 @@ namespace Snstvwd\Filter\Kernel;
  		return $this;
  	}
  	
- 	/**
- 	 * 设置结束 Tag
- 	 * @Author xiaowu
- 	 * @return [bool]       [description]
- 	 */
- 	public function getEnd () {
- 		return $this->end;
- 	}
 
  }

@@ -3,6 +3,7 @@
 namespace Snstvwd\Filter\Providers;
 
 use Snstvwd\Filter\Kernel\Filter;
+use Snstvwd\Filter\Kernel\TextProcessor;
 use Illuminate\Support\ServiceProvider;
 
 class FilterSerivceProvider extends ServiceProvider
@@ -34,7 +35,11 @@ class FilterSerivceProvider extends ServiceProvider
     {
          // 单例绑定服务
         $this->app->singleton('filter', function ($app) {
-            return new Filter($app['session'], $app['config']);
+            return new Filter($app['config']);
+        });
+         // 绑定服务
+        $this->app->bind('textprocessor', function ($app) {
+            return new TextProcessor($app['config']);
         });
     }
     /**
@@ -45,6 +50,6 @@ class FilterSerivceProvider extends ServiceProvider
     public function provides()
     {
         // 因为延迟加载 所以要定义 provides 函数 具体参考laravel 文档
-        return ['filter'];
+        return ['filter', 'textprocessor'];
     }
 }
