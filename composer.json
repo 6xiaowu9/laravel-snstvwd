@@ -11,5 +11,5 @@
         "psr-4": {
             "Snstvwd\\Filter\\": "src/"
         }
-    },
+    }
 }
