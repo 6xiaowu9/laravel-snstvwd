@@ -6,5 +6,10 @@
             "name": "6xiaowu9"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Snstvwd\\Filter\\": "src/",
+        }
+    },
 }
