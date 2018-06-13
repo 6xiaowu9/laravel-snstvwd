@@ -1,8 +1,11 @@
 # 敏感词过滤器
 
-> 安装
+PHP实现的一个DFA敏感词过滤器，支持 Laravel 框架。
+
+> ## 安装
 
 ### 1. 利用composer安装包
+
 ```
 $ composer require snstvwd/filter
 ```
@@ -94,3 +97,6 @@ public function test () {
 强制补位
 
 布尔类型，在以上条件下，且 <code>replace_size</code> 不为 <code>0</code> 时，<code>force_replace</code> 不为 <code>true</code> 时，敏感词替换过滤字符后不足 <code>replace_size</code> 长度将会将强制补位到 <code>replace_size</code> 的长度，如：敏感词为 <code>傻逼</code> ，文本为 <code>你是傻逼么？</code> ，替换字符为 <code>?</code> , <code>replace_size</code> 为 <code>3</code> ，<code>force_replace</code> 为 <code>true</code> ，那么替换后为 <code>你是???么？</code>;，<code>force_replace</code> 为 <code>false</code> 那么替换后为 <code>你是??么？</code> 
+
+
+## <center>THANK YOU</center>
