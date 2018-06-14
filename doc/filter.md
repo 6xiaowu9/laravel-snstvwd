@@ -99,3 +99,4 @@ public function testFilter() {
 ```
 Filter::filter( string $text );
 ```
+
