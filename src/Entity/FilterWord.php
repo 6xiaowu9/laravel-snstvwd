@@ -70,11 +70,11 @@ class FilterWord
 	 * @param  int    $keyIndex [敏感词在原始文本中的索引]
 	 * @param  string $key      [敏感词节点值]
 	 */
-	public function setWordByIndex ( int $index,int $keyIndex,string $key ) {
+	public function pushWordByIndex ( int $index, int $text_index, int $origin_index, string $key ) {
 		if ( $this->issetWrodByIndex( $index ) )
 			$this->words[$index]->pushKey( $key );
 		else
-			$this->words[$index] = new Word( $keyIndex, $key );
+			$this->words[$index] = new Word( $text_index, $origin_index, $key );
 	}
 
 	/**

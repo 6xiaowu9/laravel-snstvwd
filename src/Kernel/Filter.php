@@ -42,6 +42,11 @@ class Filter
      * @return [FilterWord]       词库过滤器实体
      */
     public function filter ( string $origin ) {
+        // return $this->snstvwd;
         return TextProcessor::verification( $origin, $this->snstvwd );
+    }
+
+    public function getSnstvwd(){
+        return $this->snstvwd;
     }
 }

@@ -9,12 +9,15 @@ class Word
 	protected $key;
 	// 敏感词在过滤后文本中的索引
 	protected $index;
+	// 敏感词在原始本中的索引
+	protected $origin_index;
 	// 敏感词长度
 	protected $length;
 
-	function __construct ( $index, $key ) {
+	function __construct ( $index, $origin_index, $key ) {
 		$this->key = $key;
 		$this->index = $index;
+		$this->origin_index = $origin_index;
 		$this->length = 1;
 	}
 
@@ -45,6 +48,7 @@ class Word
 		$this->key .= $key;
 		$this->incrLength();
 	}
+
 	/**
 	 *获取敏感词在文本中的索引
 	 * @Author xiaowu
@@ -61,6 +65,24 @@ class Word
 	 */
 	public function setIndex ( int $index ) {
 		$this->index = $index;
+	}
+
+	/**
+	 *获取敏感词在原始文本中的索引
+	 * @Author xiaowu
+	 * @return [int]
+	 */
+	public function getOriginIndex () {
+		return $this->index;
+	} 
+
+	/**
+	 * 设值敏感词在原始文本中的索引
+	 * @Author xiaowu
+	 * @param  [int] $index
+	 */
+	public function setOriginIndex ( int $index ) {
+		$this->origin_index = $origin_index;
 	}
 
 	/**

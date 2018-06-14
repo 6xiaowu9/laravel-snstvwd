@@ -3,6 +3,8 @@ namespace Snstvwd\Filter\Entity;
 
  /**
   * 节点模型类
+  * 旧版本 使用递归时使用，性能不如array
+  * 新版本 使用循环已废弃
   */
  class Node
  {
