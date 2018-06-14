@@ -44,7 +44,8 @@ class TextProcessor
 	 * @param  array  $wordArr  [敏感词分割数组]
 	 * @param  [type] &$snstvwd [description]
 	 */
-	private function ArrayToHashMap ( array $wordArr, &$snstvwd ) {
+	private function ArrayToHashMap ( array $wordArr, array &$snstvwd ) {
+
 		while ( isset($wordArr[0]) ) {
 
 			$key = array_shift($wordArr);
@@ -62,6 +63,64 @@ class TextProcessor
 
 			$snstvwd = &$snstvwd[$key]['next'];
 
+		}
+
+	}
+
+	/**
+	 * 删除敏感词
+	 * @Author xiaowu
+	 * @param  array  $words   [需要删除的敏感词数组]
+	 * @param  array  $snstvwd [敏感词树]
+	 * @return [type]          [返回敏感词树]
+	 */
+	public function removeWords ( array $words, array $snstvwd = [] ) {
+		if ( count( $snstvwd ) > 0 ) {
+			foreach ($words as $key => $word) {
+				$wordArr = preg_split('/(?<!^)(?!$)/u', $word);
+				$this->matchingAndRemove( $wordArr, $snstvwd );
+			}
+		}
+		return $snstvwd;
+	}
+
+	/**
+	 * 匹配敏感词并且删除
+	 * 使用递归，因为需要等到最后一个节点处理完了才能决定之前的节点是否需要处理
+	 * @Author xiaowu
+	 * @param  array  $wordArr  [敏感词节点数组]
+	 * @param  array  &$snstvwd [敏感词树]
+	 * @return [type]           [返回 0/1]
+	 */
+	private function matchingAndRemove ( array $wordArr, array &$snstvwd ) {
+
+		if ( isset( $wordArr[0] ) ) {
+			$key = array_shift( $wordArr );
+			if ( isset( $snstvwd[$key] ) ) {
+				if ( isset( $wordArr[0] ) )
+					if ( $this->matchingAndRemove ( $wordArr, $snstvwd[$key]['next'] ) )
+						return $this->removeSnstvwd( $key, $snstvwd );
+					else
+						return 0;
+				else 
+					return $this->removeSnstvwd( $key, $snstvwd );
+			}
+		}
+	}
+
+	/**
+	 * 从敏感词树中删除敏感词节点
+	 * @Author xiaowu
+	 * @param  string $key      [节点]
+	 * @param  array  &$snstvwd [敏感词树]
+	 * @return [type]           [返回 0/1]
+	 */
+	private function removeSnstvwd ( string $key, array &$snstvwd ) {
+		if ( $snstvwd[$key]['end'] && count( $snstvwd[$key]['next'] ) > 0 ) 
+			return $snstvwd[$key]['end'] = 0;
+		elseif ( count( $snstvwd[$key]['next'] ) == 0 ){
+			unset($snstvwd[$key]);
+			return 1;
 		}
 	}
 

@@ -30,9 +30,19 @@ class Filter
      * @param  [string | array] $words [description]
      */
     public function addWords ( $words ) {
+        if ( empty( $words ) ) return false;
         if ( !is_array( $words ) ) 
             $words = [$words];
         $this->snstvwd = TextProcessor::fomateWords( $words, $this->snstvwd );
+        return $this;
+    }
+
+    public function removeWords ( $words ) {
+        if ( empty( $words ) ) return false;
+        if ( !is_array( $words ) ) 
+            $words = [$words];
+        $this->snstvwd = TextProcessor::removeWords( $words, $this->snstvwd );
+        return $this;
     }
 
     /**
