@@ -92,7 +92,7 @@ public function testFilter() {
 
 概述： filter 方法为主要过滤方法，传入一个需要过滤的字符串文本，该方法会返回一个FilterWord的实体类，提供使用。
 
-返回值: FilterWord, FilterWord是一个实体类，提供一些可用的方法，想要知道更多可以点击：[FilterWord使用指南]（./filterword.md）查看详细的FilterWord指南。
+返回值: FilterWord, FilterWord是一个实体类，提供一些可用的方法，想要知道更多可以点击：<a href="./filterword.md">FilterWord使用指南</a>查看详细的FilterWord指南。
 
 > 实例：
 
