@@ -1,5 +1,5 @@
 {
-    "name": "snstvwd/filter",
+    "name": "snstvwd/laravel-filter",
     "keywords": ["filter", "dfa", "sensitive word"],
     "description": "PHP基于确定有穷自动机算法（DFA）的敏感词过滤器",
     "type": "library",
