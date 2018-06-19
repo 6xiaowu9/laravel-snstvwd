@@ -14,8 +14,7 @@ class Filter
 
     protected $snstvwd;
     /**
-     * Packagetest constructor.
-     * @param SessionManager $session
+     * Filter constructor.
      * @param Repository $config
      */
     public function __construct(Repository $config)

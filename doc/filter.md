@@ -90,7 +90,7 @@ public function testFilter() {
 
 ### filter
 
-概述： filter 方法为主要过滤方法，传入一个需要过滤的字符串文本，该方法会返回一个FilterWord的实体类，提供使用。
+filter 方法为主要过滤方法，传入一个需要过滤的字符串文本，该方法会返回一个FilterWord的实体类，提供使用。
 
 返回值: FilterWord, FilterWord是一个实体类，提供一些可用的方法，想要知道更多可以点击：<a href="./filterword.md">FilterWord使用指南</a>查看详细的FilterWord指南。
 
@@ -99,3 +99,48 @@ public function testFilter() {
 ```
 Filter::filter( string $text );
 ```
+
+### getWords
+
+获取所有敏感词树，该敏感词树是由配置或手动动态添加的敏感词组成的哈希树。
+
+返回值： 以数组为载体，以单词字符为键节点的一个哈希树。
+
+> 实例：
+
+```
+Filter::getWords();
+```
+
+### addWords
+
+动态添加一个或多个敏感词，当你需要在某些特定条件需要设置一些敏感词的时候，你可以通过该方法去动态的添加一些敏感词进入敏感词树中，实现你的特定逻辑。
+
+返回值： 返回一个 Filter 对象。
+
+> 实例：
+
+```
+Filter::addWords('SB');
+Filter::addWords(['SB', 'fuck']);
+```
+
+### removeWords
+
+动态删除一个或多个敏感词，和 addWords 正好相反，你需要一些特定情况可以使用它。
+
+返回值： 返回一个 Filter 对象。
+
+> 实例：
+
+```
+Filter::removeWords('SB');
+Filter::removeWords(['SB', 'fuck']);
+```
+
+特别提示： 你可以用一些连贯操作如：
+```
+Filter::addWords('SB')->removeWords(['bitch'])->filter('you are bitch!');
+```
+
+## <center>THANK YOU</center>

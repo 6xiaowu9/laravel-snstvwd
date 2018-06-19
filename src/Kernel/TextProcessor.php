@@ -127,20 +127,21 @@ class TextProcessor
 	/**
 	 * 校验敏感词
 	 * @Author xiaowu
-	 * @param  string       $text         [需要校验的文本]
+	 * @param  string       $origin         [需要校验的文本]
 	 * @param  array        $snstvwd      [校验词库数组]
 	 * @return [FilterWord]               [词库过滤器实体]
 	 */
-	public function verification ( string $text, array $snstvwd ) {
+	public function verification ( string $origin, array $snstvwd ) {
 		$this->snstvwd = $snstvwd;
         $filter_word = new FilterWord( 
-						        	$text , 
+						        	$origin , 
 						        	$this->config['word_replace'], 
 						        	$this->config['replace_size'], 
 						        	$this->config['replace_str'], 
 						        	$this->config['force_replace'] );
 		$textArray = $filter_word->getTextArray();
 		$this->testWords ( $textArray, $snstvwd, $filter_word );
+		$filter_word->setText( $filter_word->getTextArray() );
 		return $filter_word;
 	}
 

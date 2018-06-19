@@ -13,6 +13,8 @@ class FilterWord
 	private $origin;
 	// 过滤后的文本
 	private $text;
+	// 过滤后的节点文本
+	private $textArray;
 	// 是否替换敏感词
 	private $word_replace;
 	// 需要过滤敏感词为过滤字符的数量
@@ -26,7 +28,7 @@ class FilterWord
 		$this->count = 0;
 		$this->words = [];
 		$this->origin = $origin;
-		$this->setText( $this->origin );
+		$this->setTextArray( $this->origin );
 		$this->word_replace = $word_replace;
 		$this->replace_size = $replace_size;
 		$this->replace_str = $replace_str;
@@ -102,7 +104,7 @@ class FilterWord
 	 * @return [array]
 	 */
 	public function getTextArray () {
-		return $this->text;
+		return $this->textArray;
 	}
 
 	/**
@@ -111,7 +113,16 @@ class FilterWord
 	 * @return [string]
 	 */
 	public function getText () {
-		return implode($this->text, '');
+		return $this->text;
+	}
+
+	/**
+	 * 设置过滤后的文本
+	 * @Author xiaowu
+	 * @param  string $origin [原始文本]
+	 */
+	public function setText ( array $origin ) {
+		$this->text =  implode($origin, '');
 	}
 
 	/**
@@ -119,8 +130,8 @@ class FilterWord
 	 * @Author xiaowu
 	 * @param  string $origin [原始文本]
 	 */
-	public function setText ( string $origin ) {
-		$this->text = preg_split('/(?<!^)(?!$)/u', $origin);
+	public function setTextArray ( string $origin ) {
+		$this->textArray = preg_split('/(?<!^)(?!$)/u', $origin);
 	}
 
 	/**
@@ -146,7 +157,7 @@ class FilterWord
 	 * @param  int $index [索引]
 	 */
 	public function setRemoveTextByIndex ( int $index ) {
-		unset( $this->text[$index] );
+		unset( $this->textArray[$index] );
 	}
 
 	/**
@@ -155,7 +166,7 @@ class FilterWord
 	 * @param  [int] $index [索引]
 	 */
 	public function setTextToReplaceStrByIndex ( int $index ) {
-		$this->text[$index] = $this->replace_str;
+		$this->textArray[$index] = $this->replace_str;
 	}
 
 	/**

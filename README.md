@@ -59,3 +59,5 @@ public function test () {
 
 ### [配置文件](./doc/setting.md)
 ### [Filter的使用指南](./doc/filter.md)
+
+## <center>THANK YOU</center>
