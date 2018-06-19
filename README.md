@@ -43,7 +43,7 @@ php artisan vendor:publish --provider="Snstvwd\Filter\Providers\FilterSerivcePro
 use Filter;
 
 public function test () {
-    $text = '你是傻逼吗？';
+    $text = '他是傻逼吗？';
     $filter = Filter::filter($text)->getText();
     dump($filter);
 }
@@ -52,7 +52,7 @@ public function test () {
 ### 返回实例
 
 ```
-你是???吗？
+他是???吗？
 ```
 
 ## 文档

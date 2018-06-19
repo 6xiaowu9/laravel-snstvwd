@@ -1,7 +1,6 @@
 <?php
 namespace Snstvwd\Filter\Kernel;
 
-use Illuminate\Config\Repository;
 use Snstvwd\Filter\Facades\TextProcessor;
 
 class Filter
@@ -17,7 +16,7 @@ class Filter
      * Filter constructor.
      * @param Repository $config
      */
-    public function __construct(Repository $config)
+    public function __construct( $config)
     {
         $this->config = $config['filter'];
         $this->snstvwd = TextProcessor::fomateWords( $this->config['words'] );
@@ -51,7 +50,6 @@ class Filter
      * @return [FilterWord]       词库过滤器实体
      */
     public function filter ( string $origin ) {
-        // return $this->snstvwd;
         return TextProcessor::verification( $origin, $this->snstvwd );
     }
 
