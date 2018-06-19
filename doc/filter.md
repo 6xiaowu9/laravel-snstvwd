@@ -100,7 +100,6 @@ filter 方法为主要过滤方法，传入一个需要过滤的字符串文本�
 Filter::filter( string $text );
 ```
 
-<<<<<<< HEAD
 ### getWords
 
 获取所有敏感词树，该敏感词树是由配置或手动动态添加的敏感词组成的哈希树。
@@ -145,5 +144,3 @@ Filter::addWords('SB')->removeWords(['bitch'])->filter('you are bitch!');
 ```
 
 ## <center>THANK YOU</center>
-=======
->>>>>>> 957372a24d25cbfa7acf5307c2f4b488c37e42fd

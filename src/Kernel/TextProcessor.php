@@ -142,6 +142,7 @@ class TextProcessor
 		$textArray = $filter_word->getTextArray();
 		$this->testWords ( $textArray, $snstvwd, $filter_word );
 		$filter_word->setText( $filter_word->getTextArray() );
+		$filter_word->setSnstvwd( $this->snstvwd );
 		return $filter_word;
 	}
 

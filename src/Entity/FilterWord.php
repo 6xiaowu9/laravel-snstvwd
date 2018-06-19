@@ -9,6 +9,8 @@ class FilterWord
 	private $count;
 	// 出现过的敏感词
 	private $words;
+	// 敏感词树
+	private $snstvwd;
 	// 原始文本
 	private $origin;
 	// 过滤后的文本
@@ -63,6 +65,23 @@ class FilterWord
 	 */
 	public function getWords () {
 		return $this->words;
+	}
+
+	/**
+	 * 获取所有的敏感词树
+	 * @Author xiaowu
+	 * @return [array] [敏感词树]
+	 */
+	public function getSnstvwd () {
+		return $this->snstvwd;
+	}
+
+	/**
+	 * 设置所有的敏感词树
+	 * @Author xiaowu
+	 */
+	public function setSnstvwd ( array $snstvwd ) {
+		$this->snstvwd = $snstvwd;
 	}
 
 	/**
